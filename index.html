@@ -18,17 +18,19 @@
         </div>
         <!-- my input  -->
         <div class="myinput">
-            <input type="text" placeholder="inserisci cose da fare">
-            <button id="inserisci">Inserisci</button>
+            <input type="text" @keyup.enter="addtodo" placeholder="inserisci cose da fare" v-model="newtodo">
+            <button id="inserisci" @click="addtodo">Inserisci</button>
         </div>
         <!-- stampa cose da fare -->
         <div class="todo">
-            <ul>
-                <li>
-                    salvare il mondo <i class="fas fa-trash-alt"></i>
+            <ul v-if="todo.length>0">
+                <li v-for="(item,index) in todo">
+                    {{item}} <i class="fas fa-trash-alt" @click="removetodo(index)"></i>
                 </li>
-            </ul>
 
+
+            </ul>
+            <h2 v-else>NON CI SONO COSE DA FARE </h2>
         </div>
 
 
